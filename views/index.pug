@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+    head
+        title Star Wars Explorer
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet")
+        link(rel='stylesheet', type='text/css', href='css/reset.css')
+        link(rel='stylesheet', type='text/css', href='css/styles.css')
+    body
+        .header
+            h1 Star Wars Explorer
+            p With this small React app you can browse through all Star Wars data the  #[a.link(target="_blank" href='http://swapi.co')  swapi.co]  API provides. Btw, you can click on an item for more info!
+        .content
+            #app
+        script(src='js/bundle.js')
+        footer
+            h3.footertext Created by #[a.link(target="_blank" href='https://yonistap.com') Yoni Stap]

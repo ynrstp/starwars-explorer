@@ -1,0 +1,36 @@
+.modal {
+  z-index: 1000;
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  border-radius: 5px;
+  background-color: #2C568C;
+  width: 620px;
+  margin-left: -310px;
+  min-height: 300px;
+  display: none;
+  overflow: auto;
+  padding: 10px;
+}
+
+.modal-active {
+  display: block;
+}
+
+.cover {
+  position: fixed;
+  z-index: 700;
+  background-color: black;
+  opacity: 0.90;
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
+.cover-active {
+  display: block;
+}
+
+.property{
+  font-weight: bold;
+}
