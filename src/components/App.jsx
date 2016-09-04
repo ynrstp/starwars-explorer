@@ -3,7 +3,9 @@ import ajax from 'superagent';
 
 import CategoryList from './CategoryList.jsx'
 import Table from './Table.jsx'
+
 import Modal from './Modal.jsx'
+import Loading from './Loading.jsx'
 
 class App extends Component {
 
@@ -20,8 +22,8 @@ class App extends Component {
                 }
             ],
             modalVisible: false,
-            modalData: 'http://swapi.co/api/people/1'
-
+            modalData: 'http://swapi.co/api/people/1',
+            loading: false
         }
     }
 
@@ -36,13 +38,28 @@ class App extends Component {
     }
 
     changeCategory(newCategory) {
-        ajax.get(`http://swapi.co/api/${newCategory}/`).set('Accept', 'application/json').end((error, response) => {
-            if (!error && response) {
-                this.setState({activeCategory: newCategory, data: response.body.results})
-            } else {
-                console.log('There was an error fetching from api', error);
-            }
-        });
+        let results = []
+
+        this.setState({loading: true})
+
+        let getAll = (url) => {
+            ajax.get(url).set('Accept', 'application/json').end((error, response) => {
+                if (!error && response) {
+                    results.push(...response.body.results)
+                    if (response.body.next !== null) {
+                        getAll(response.body.next)
+                    } else {
+                        this.setState({activeCategory: newCategory, data: results, loading: false})
+                    }
+
+                } else {
+                    console.log('There was an error fetching from api', error);
+                }
+            });
+
+        }
+        getAll(`http://swapi.co/api/${newCategory}/`)
+
     }
 
     toggleModal(url) {
@@ -69,13 +86,18 @@ class App extends Component {
 
     render() {
 
-        return (
-            <div>
-                <Modal modalVisible={this.state.modalVisible} toggleModal={this.toggleModal} data={this.state.modalData}/>
-                <CategoryList changeCategory={this.changeCategory}/>
-                <Table data={this.state.data} toggleModal={this.toggleModal}/>
-            </div>
-        )
+        if (this.state.loading) {
+            return (<Loading/>)
+        } else {
+
+            return (
+                <div>
+                    <Modal modalVisible={this.state.modalVisible} toggleModal={this.toggleModal} data={this.state.modalData}/>
+                    <CategoryList changeCategory={this.changeCategory}/>
+                    <Table data={this.state.data} toggleModal={this.toggleModal}/>
+                </div>
+            )
+        }
     }
 }
 
