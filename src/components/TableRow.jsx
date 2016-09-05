@@ -4,7 +4,7 @@ class TableRow extends Component {
 
   fetchElement(number) {
     return (
-      <td>
+      <td key={number}>
         <div className="td-container">
           {this.props.item[Object.keys(this.props.item)[number]]}</div>
       </td>
@@ -34,9 +34,9 @@ class TableRow extends Component {
 }
 
 TableRow.propTypes = {
+  link: React.PropTypes.string,
   item: React.PropTypes.object.isRequired,
   toggleModal: React.PropTypes.func.isRequired,
-  link: React.PropTypes.object.isRequired,
 };
 
 export default TableRow;

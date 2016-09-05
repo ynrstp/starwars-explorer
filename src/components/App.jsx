@@ -41,12 +41,12 @@ class App extends Component {
 
     this.setState({ loading: true });
 
-    const getAll = (url) => {
+    const getData = (url) => {
       ajax.get(url).set('Accept', 'application/json').end((error, response) => {
         if (!error && response) {
           results.push(...response.body.results);
           if (response.body.next !== null) {
-            getAll(response.body.next);
+            getData(response.body.next);
           } else {
             this.setState({ activeCategory: newCategory, data: results, loading: false });
           }
@@ -55,7 +55,7 @@ class App extends Component {
         }
       });
     };
-    getAll(`http://swapi.co/api/${newCategory}/`);
+    getData(`http://swapi.co/api/${newCategory}/`);
   }
 
   toggleModal(url) {

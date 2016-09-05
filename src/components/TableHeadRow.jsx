@@ -11,7 +11,7 @@ class TableHeadRow extends Component {
 }
 
 TableHeadRow.propTypes = {
-  item: React.PropTypes.object.isRequired,
+  item: React.PropTypes.string.isRequired,
 };
 
 export default TableHeadRow;

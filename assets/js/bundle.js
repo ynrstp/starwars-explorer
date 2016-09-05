@@ -21503,12 +21503,12 @@
 	
 	      this.setState({ loading: true });
 	
-	      var getAll = function getAll(url) {
+	      var getData = function getData(url) {
 	        _superagent2.default.get(url).set('Accept', 'application/json').end(function (error, response) {
 	          if (!error && response) {
 	            results.push.apply(results, _toConsumableArray(response.body.results));
 	            if (response.body.next !== null) {
-	              getAll(response.body.next);
+	              getData(response.body.next);
 	            } else {
 	              _this3.setState({ activeCategory: newCategory, data: results, loading: false });
 	            }
@@ -21517,7 +21517,7 @@
 	          }
 	        });
 	      };
-	      getAll('http://swapi.co/api/' + newCategory + '/');
+	      getData('http://swapi.co/api/' + newCategory + '/');
 	    }
 	  }, {
 	    key: 'toggleModal',
@@ -23252,7 +23252,7 @@
 	
 	CategoryItem.propTypes = {
 	  changeCategory: _react2.default.PropTypes.func.isRequired,
-	  item: _react2.default.PropTypes.object.isRequired
+	  item: _react2.default.PropTypes.string.isRequired
 	};
 	
 	exports.default = CategoryItem;
@@ -23305,12 +23305,7 @@
 	
 	      var rows = [];
 	      this.props.data.forEach(function (item, i) {
-	        rows.push(_react2.default.createElement(_TableRow2.default, {
-	          key: i,
-	          item: item,
-	          link: item.url,
-	          toggleModal: _this2.props.toggleModal
-	        }));
+	        rows.push(_react2.default.createElement(_TableRow2.default, { key: i, item: item, link: item.url, toggleModal: _this2.props.toggleModal }));
 	      });
 	
 	      var elements = [];
@@ -23347,7 +23342,7 @@
 	}(_react.Component);
 	
 	Table.propTypes = {
-	  data: _react2.default.PropTypes.object.isRequired,
+	  data: _react2.default.PropTypes.array.isRequired,
 	  toggleModal: _react2.default.PropTypes.func.isRequired
 	};
 	
@@ -23391,7 +23386,7 @@
 	    value: function fetchElement(number) {
 	      return _react2.default.createElement(
 	        "td",
-	        null,
+	        { key: number },
 	        _react2.default.createElement(
 	          "div",
 	          { className: "td-container" },
@@ -23430,9 +23425,9 @@
 	}(_react.Component);
 	
 	TableRow.propTypes = {
+	  link: _react2.default.PropTypes.string,
 	  item: _react2.default.PropTypes.object.isRequired,
-	  toggleModal: _react2.default.PropTypes.func.isRequired,
-	  link: _react2.default.PropTypes.object.isRequired
+	  toggleModal: _react2.default.PropTypes.func.isRequired
 	};
 	
 	exports.default = TableRow;
@@ -23485,7 +23480,7 @@
 	}(_react.Component);
 	
 	TableHeadRow.propTypes = {
-	  item: _react2.default.PropTypes.object.isRequired
+	  item: _react2.default.PropTypes.string.isRequired
 	};
 	
 	exports.default = TableHeadRow;
@@ -23528,7 +23523,7 @@
 	    value: function getData(number) {
 	      return _react2.default.createElement(
 	        'li',
-	        null,
+	        { key: number },
 	        _react2.default.createElement(
 	          'span',
 	          { className: 'property' },
@@ -23578,7 +23573,7 @@
 	}(_react.Component);
 	
 	Modal.propTypes = {
-	  data: _react2.default.PropTypes.object.isRequired,
+	  data: _react2.default.PropTypes.string,
 	  modalVisible: _react2.default.PropTypes.bool.isRequired,
 	  toggleModal: _react2.default.PropTypes.func.isRequired
 	};

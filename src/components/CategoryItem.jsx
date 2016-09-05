@@ -5,7 +5,7 @@ const CategoryItem = (props) => <li onClick={() => props.changeCategory(props.it
 
 CategoryItem.propTypes = {
   changeCategory: React.PropTypes.func.isRequired,
-  item: React.PropTypes.object.isRequired,
+  item: React.PropTypes.string.isRequired,
 };
 
 export default CategoryItem;

@@ -8,12 +8,8 @@ class Table extends Component {
   render() {
     const rows = [];
     this.props.data.forEach((item, i) => {
-      rows.push(<TableRow
-        key={i}
-        item={item}
-        link={item.url}
-        toggleModal={this.props.toggleModal}
-      />);
+      rows.push(
+        <TableRow key={i} item={item} link={item.url} toggleModal={this.props.toggleModal} />);
     });
 
     const elements = [];
@@ -40,7 +36,7 @@ class Table extends Component {
 }
 
 Table.propTypes = {
-  data: React.PropTypes.object.isRequired,
+  data: React.PropTypes.array.isRequired,
   toggleModal: React.PropTypes.func.isRequired,
 };
 

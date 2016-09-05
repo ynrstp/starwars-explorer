@@ -4,9 +4,10 @@ class Modal extends Component {
 
   getData(number) {
     return (
-      <li>
+      <li key={number}>
         <span className="property">{Object.keys(this.props.data)[number]}</span>
-        : {this.props.data[Object.keys(this.props.data)[number]]}</li>
+        : {this.props.data[Object.keys(this.props.data)[number]]}
+      </li>
     );
   }
 
@@ -40,7 +41,7 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  data: React.PropTypes.object.isRequired,
+  data: React.PropTypes.string,
   modalVisible: React.PropTypes.bool.isRequired,
   toggleModal: React.PropTypes.func.isRequired,
 };
