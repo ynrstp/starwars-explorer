@@ -1,15 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class CategoryItem extends Component {
+const CategoryItem = (props) => <li onClick={() => props.changeCategory(props.item)}>{props.item}
+</li>;
 
-    render() {
+CategoryItem.propTypes = {
+  changeCategory: React.PropTypes.func.isRequired,
+  item: React.PropTypes.object.isRequired,
+};
 
-        return (
-            <li onClick={() => this.props.changeCategory(this.props.item)}>{this.props.item}</li>
-        )
-
-    }
-
-}
-
-export default CategoryItem
+export default CategoryItem;
