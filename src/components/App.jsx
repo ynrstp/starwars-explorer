@@ -41,6 +41,8 @@ class App extends Component {
 
     this.setState({ loading: true });
 
+    // make ajax request to the API and if the response includes a "next page-key, make
+    // another API call"
     const getData = (url) => {
       ajax.get(url).set('Accept', 'application/json').end((error, response) => {
         if (!error && response) {
@@ -58,6 +60,7 @@ class App extends Component {
     getData(`http://swapi.co/api/${newCategory}/`);
   }
 
+  // When an item is clicked, make the modal visible and load the data with an ajax request
   toggleModal(url) {
     if (!url) {
       this.setState({
@@ -80,9 +83,13 @@ class App extends Component {
 
   render() {
     if (this.state.loading) {
-      return (< Loading / >);
+      return (
+        <div>
+          <CategoryList changeCategory={this.changeCategory} />
+          < Loading />
+        </div>
+      );
     }
-
     return (
       <div>
         <Modal

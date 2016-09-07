@@ -3,6 +3,8 @@ require('dotenv').config();
 
 const app = express();
 
+app.locals.pretty = true;
+
 app.use(express.static('assets'));
 
 app.set('views', './views');

@@ -21503,6 +21503,8 @@
 	
 	      this.setState({ loading: true });
 	
+	      // make ajax request to the API and if the response includes a "next page-key, make
+	      // another API call"
 	      var getData = function getData(url) {
 	        _superagent2.default.get(url).set('Accept', 'application/json').end(function (error, response) {
 	          if (!error && response) {
@@ -21519,6 +21521,9 @@
 	      };
 	      getData('http://swapi.co/api/' + newCategory + '/');
 	    }
+	
+	    // When an item is clicked, make the modal visible and load the data with an ajax request
+	
 	  }, {
 	    key: 'toggleModal',
 	    value: function toggleModal(url) {
@@ -21546,9 +21551,13 @@
 	    key: 'render',
 	    value: function render() {
 	      if (this.state.loading) {
-	        return _react2.default.createElement(_Loading2.default, null);
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(_CategoryList2.default, { changeCategory: this.changeCategory }),
+	          _react2.default.createElement(_Loading2.default, null)
+	        );
 	      }
-	
 	      return _react2.default.createElement(
 	        'div',
 	        null,
