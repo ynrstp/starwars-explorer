@@ -27,11 +27,7 @@ class CategoryList extends Component {
 
   render() {
     const items = this.state.categories.map((item) => {
-      return (<CategoryItem
-        key={Math.random()}
-        item={item}
-        changeCategory={this.props.changeCategory}
-      />);
+      return (<CategoryItem key={Math.random()} item={item} changeCategory={this.props.changeCategory} />);
     });
 
     return (
