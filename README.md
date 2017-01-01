@@ -13,10 +13,10 @@ Currently using the following frameworks and tools:
 ## Styleguide
 Linted using Eslint and the Airbnb react styleguide
 
-## To-do lsit
+## To-do list
  * Prettify the modal
- * Style the loading screen
- * Refactor to use Redux.js
+ * Add styles to the loading screen
+ * Refactor to use Redux
  * Add documentation
 
 ## Dependency explanations
