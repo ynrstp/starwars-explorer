@@ -7,8 +7,8 @@ Working demo can be found [here](http://starwars.yonistap.com).
 Currently using the following frameworks and tools:
  * React.js
  * Sass
- * Gulp.js
- * Webpack
+ * Gulp (Will be deprecated in future versions)
+ * Webpack 2.0
 
 ## Styleguide
 Linted using Eslint and the Airbnb react styleguide
